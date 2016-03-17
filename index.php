@@ -9,7 +9,7 @@ if (isset($_POST["emailcheck"])) {
     confirm($query);
     $email_check = mysqli_num_rows($query);
 
-   if ($email_check == 1) {
+    if ($email_check == 1) {
         echo '<span style="color: #b42a11">You are already registered in This Site. Log in <a href="#" style="color: #122b40">Here</a></span>';
         exit();
     } else {
@@ -62,9 +62,9 @@ if (isset($_POST["e"]) && !(isset($_POST['id']))) {
                     <div style="padding:10px; background:#333; font-size:24px; color:#CCC;">
                     <a style="color: #c3c0b9; text-decoration: none" href="http://shaunakjuspay.esy.es">
                     Meetutu Account Information</a></div>
-                    <div style="padding:24px; font-size:17px;">Hello ' . $fn . ' ' .$ln. ',<br /><br />
+                    <div style="padding:24px; font-size:17px;">Hello ' . $fn . ' ' . $ln . ',<br /><br />
                     Click the link below to activate your account when ready:<br /><br />
-                    <a href="http://shaunakjuspay.esy.es/activation?id=' . $uid .  '&e=' . $e . '&p=' . $p_hash . '">Click here to activate your account now</a>
+                    <a href="http://shaunakjuspay.esy.es/activation.php?id=' . $uid . '&e=' . $e . '&p=' . $p_hash . '">Click here to activate your account now</a>
                     <br /><br />Login after successful activation using your:<br />* E-mail Address: <b>' . $e . '</b></div></body></html>';
         $headers = "From: $from\n";
         $headers .= "MIME-Version: 1.0\n";
@@ -92,16 +92,14 @@ if (isset($_POST["id"])) {
     if ($e == "" || $fn == "" || $ln == "") {
         echo "The form submission is missing values.";
         exit();
-    } else if($already_registered_check==1)
-    {
+    } else if ($already_registered_check == 1) {
         //user is trying to login using facebook
         echo "login_from_facebook";
         $_SESSION['fname'] = $fn;
         $_SESSION['lname'] = $ln;
         $_SESSION['email'] = $e;
         exit();
-    }
-    else{
+    } else {
         // END FORM DATA ERROR HANDLING
         // Begin Insertion of data into the database
         // Hash the password and apply your own mysterious unique salt
@@ -154,7 +152,7 @@ if (isset($_POST["id"])) {
         // initialize and setup facebook javascript sdk
         window.fbAsyncInit = function () {
             FB.init({
-                appId: '205463876476422',
+                appId: '557156057775440',
                 xfbml: true,
                 version: 'v2.5'
             });
@@ -184,9 +182,8 @@ if (isset($_POST["id"])) {
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
-        function loginFacebook()
-        {
-            FB.login(function(response){
+        function loginFacebook() {
+            FB.login(function (response) {
                 if (response.status === 'connected') {
                     document.getElementById('status').innerHTML = 'We are connected';
                     console.log(response.status);
@@ -200,29 +197,29 @@ if (isset($_POST["id"])) {
                     document.getElementById('status').innerHTML = 'You are not logged into facebook';
                     console.log(response.status);
                 }
-            },{scope:'email,user_likes'});
+            }, {scope: 'email,user_likes'});
         }
 
-        function getInfo()
-        {
-            FB.api('/me','GET',{fields: 'first_name,last_name,name,email'},function(response){
+        function getInfo() {
+            FB.api('/me', 'GET', {fields: 'first_name,last_name,name,email'}, function (response) {
                 console.log(response)
                 var firstName = response.first_name;
                 var lastName = response.last_name;
                 var email = response.email;
                 var id = response.id;
                 var ajax = ajaxObj("POST", "index.php");
+                _('facebook-button-container').style.display='none';
                 ajax.onreadystatechange = function () {
                     if (ajaxReturn(ajax) == true) {
                         if (ajax.responseText.trim() == "signup_success_from_facebook") {
                             console.log(ajax.responseText);
                             //user signed up via fb
-                            window.location="start2.php";
+                            window.location = "start2.php";
                             console.log("signup ok");
                         }
-                        else if(ajax.responseText.trim() == "login_from_facebook") {
+                        else if (ajax.responseText.trim() == "login_from_facebook") {
                             console.log(ajax.responseText);
-                            window.location="start2.php";
+                            window.location = "start2.php";
                             console.log("login ok");
                         }
 
@@ -252,7 +249,7 @@ if (isset($_POST["id"])) {
             <li><a href="#locate" class="smoothScroll">Locate us</a></li>
             <li><a href="#contact" class="smoothScroll">Get in Touch</a></li>
             <?
-            if(isset($_SESSION['email']))
+            if (isset($_SESSION['email']))
                 echo '<li><a href="logout.php">Logout</a></li>';
             ?>
             <li class="social">
@@ -279,7 +276,7 @@ if (isset($_POST["id"])) {
                 </div>
             </h2>
             <script>wss_elem = document.getElementById("wss");
-            wssSlide(); </script>
+                wssSlide(); </script>
         </div>
 
     </div>
@@ -294,9 +291,12 @@ if (isset($_POST["id"])) {
         </div>
         <div class="row">
             <div class="col-lg-12 text2">
-
-                ​
-                The joy meeting an expert teacher, for the craving learner<br><br>
+                <?
+                if (!isset($_SESSION['email']))
+                    echo 'The joy meeting an expert teacher, for the craving learner<br><br>';
+                else
+                    echo "Hi...{$_SESSION['fname']} {$_SESSION['lname']}";
+                ?>
             </div>
         </div>
         <br>
@@ -335,9 +335,9 @@ if (isset($_POST["id"])) {
         <div class="row">
             <div class="col-sm-5"></div>
             <div class="col-sm-2">
-                <? if(!isset($_SESSION['email']))
+                <? if (!isset($_SESSION['email']))
                     echo '<div class="signup-button" data-toggle="modal" data-target="#myModal"><a name="about">Sign Up</a></div>';
-                    else
+                else
                     echo '<a href="start2.php"><div class="signup-button-alternative">Find your Mentors</div></a>';
                 ?>
             </div>
@@ -361,23 +361,25 @@ if (isset($_POST["id"])) {
                 <div class="row">
                     <div class="col-xs-3"></div>
                     <div class="col-xs-6 button-container">
-                            <div class="icon-container">
-                                <i class="fa fa-google-plus fa-4x google"></i>
-                            </div>
-                            <div class="button-text">Login With Google</div>
+                        <div class="icon-container">
+                            <i class="fa fa-google-plus fa-4x google"></i>
+                        </div>
+                        <div class="button-text">Login With Google</div>
                     </div>
                     <div class="col-xs-3"></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-5">
-                        <hr/></div>
+                        <hr/>
+                    </div>
                     <div class="col-xs-2 or">OR</div>
                     <div class="col-xs-5">
-                        <hr/></div>
+                        <hr/>
+                    </div>
                 </div>
-                <div class="row" >
+                <div class="row">
                     <div class="col-xs-3"></div>
-                    <div class="col-xs-6 button-container">
+                    <div class="col-xs-6 button-container" id="facebook-button-container">
                         <div class="icon-container" onclick="loginFacebook()">
                             <i class="fa fa-facebook fa-4x facebook"></i>
                         </div>
@@ -387,20 +389,27 @@ if (isset($_POST["id"])) {
                 </div>
                 <div class="row">
                     <div class="col-xs-5">
-                        <hr/></div>
+                        <hr/>
+                    </div>
                     <div class="col-xs-2 or">OR</div>
                     <div class="col-xs-5">
-                        <hr/></div>
+                        <hr/>
+                    </div>
                 </div>
                 <div class="row" id="signup-body">
                     <div class="col-xs-1"></div>
                     <div class="col-xs-10">
-                        <input type="text" class="input-modal" id="firstname" placeholder="ENTER FIRST NAME" onkeyup="restrict('firstname')">
-                        <input type="text" class="input-modal" id="lastname" placeholder="ENTER LAST NAME" onkeyup="restrict('lastname')">
-                        <input type="email" class="input-modal" id="email" placeholder="ENTER EMAIL" onkeyup="restrict('email')" onblur="checkEmail()">
+                        <input type="text" class="input-modal" id="firstname" placeholder="ENTER FIRST NAME"
+                               onkeyup="restrict('firstname')">
+                        <input type="text" class="input-modal" id="lastname" placeholder="ENTER LAST NAME"
+                               onkeyup="restrict('lastname')">
+                        <input type="email" class="input-modal" id="email" placeholder="ENTER EMAIL"
+                               onkeyup="restrict('email')" onblur="checkEmail()">
+
                         <div id="emailstatus"></div>
                         <input type="password" class="input-modal" id="pass1" placeholder="ENTER PASSWORD">
                         <input type="password" class="input-modal" id="pass2" placeholder="CONFIRM PASSWORD">
+
                         <div id="status"></div>
                         <div class="register-button" id="register-button" onclick="signup()">Register</div>
 
@@ -414,7 +423,7 @@ if (isset($_POST["id"])) {
             <div class="modal-body" id="login-body">
                 <div class="row">
                     <div class="col-xs-1"></div>
-                    <div class="col-xs-10" >
+                    <div class="col-xs-10">
                         <input type="email" class="input-modal" id="login-email" placeholder="ENTER EMAIL ID">
                         <input type="password" class="input-modal" id="login-password" placeholder="ENTER PASSWORD">
                     </div>
@@ -438,6 +447,7 @@ if (isset($_POST["id"])) {
 </div>
 
 <br>
+
 <div class="row">
     <div class="col-xs-3"></div>
 
@@ -447,12 +457,14 @@ if (isset($_POST["id"])) {
 </div>
 <hr>
 <br><br>
+
 <div class="border-top wow fadeIn" data-wow-duration="0.7s" data-wow-delay="0.78s">
 
 </div>
 <div class="container-fluid">
     <div class="row information-section">
-        <div class="col-md-4 information-heading wow slideInLeft" data-wow-duration="0.3s" data-wow-delay="0.4s"><a name="locate">WHAT WE DO</a></div>
+        <div class="col-md-4 information-heading wow slideInLeft" data-wow-duration="0.3s" data-wow-delay="0.4s"><a
+                name="locate">WHAT WE DO</a></div>
         <div class="col-md-8 information wow slideInRight" data-wow-duration="0.3s" data-wow-delay="0.4s">
             <div id="owl-demo" class="owl-carousel owl-theme">
 
@@ -466,6 +478,7 @@ if (isset($_POST["id"])) {
 
 <div class="border-top wow fadeIn" data-wow-duration="0.7s" data-wow-delay="0.78s"></div>
 <br>
+
 <div class="row">
     <div class="col-xs-3"></div>
 
@@ -475,16 +488,20 @@ if (isset($_POST["id"])) {
 </div>
 <hr>
 <br><br>
+
 <div class="border-top wow fadeIn" data-wow-duration="0.7s" data-wow-delay="0.78s"></div>
 <div class="row">
     <div class="col-xs-12">
         <div id="googleMap" style="width: inherit; height: 300px;"></div>
     </div>
 </div>
-<a name="contact"><div class="border-top wow fadeIn" data-wow-duration="0.7s" data-wow-delay="0.78s"></div></a>
+<a name="contact">
+    <div class="border-top wow fadeIn" data-wow-duration="0.7s" data-wow-delay="0.78s"></div>
+</a>
 
 <!--start of footer layout-->
 <br>
+
 <div class="row">
     <div class="col-xs-3"></div>
 
@@ -494,6 +511,7 @@ if (isset($_POST["id"])) {
 </div>
 <hr>
 <br><br>
+
 <div class="border-top wow fadeIn" data-wow-duration="0.7s" data-wow-delay="0.78s"></div>
 <div class="container-fluid">
     <div class="row sum-footer">
@@ -559,23 +577,21 @@ if (isset($_POST["id"])) {
 
         $('owl-prev').css('display', 'none');
 
-        $('.learner').on('click',function(e){
+        $('.learner').on('click', function (e) {
             e.preventDefault();
             var $load = $('#loaded-content');
             $load.hide();
-            $load.load('fragments/learner.html',function()
-            {
+            $load.load('fragments/learner.html', function () {
                 $('.learner').addClass('selected');
                 $('.teacher').removeClass('selected');
             }).fadeIn('slow');
         });
 
-        $('.teacher').on('click',function(e){
+        $('.teacher').on('click', function (e) {
             e.preventDefault();
             var $load = $('#loaded-content');
             $load.hide();
-            $load.load('fragments/teacher.html',function()
-            {
+            $load.load('fragments/teacher.html', function () {
                 $('.teacher').addClass('selected');
                 $('.learner').removeClass('selected');
             }).fadeIn('slow');
@@ -584,12 +600,11 @@ if (isset($_POST["id"])) {
     });
     $('owl-prev').css('display', 'none')
 
-    $('#login-button').on('click',function()
-    {
+    $('#login-button').on('click', function () {
         $('#login-body').slideDown(300);
         $('#signup-body').slideUp(300);
-        $('#login-button').attr('id','new-button');
-        document.getElementById('new-button').addEventListener('click',login);
+        $('#login-button').attr('id', 'new-button');
+        document.getElementById('new-button').addEventListener('click', login);
     })
 
 </script>

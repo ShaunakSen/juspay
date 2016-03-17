@@ -59,12 +59,12 @@ function signup() {
         var ajax = ajaxObj("POST", "index.php");
         ajax.onreadystatechange = function () {
             if (ajaxReturn(ajax) == true) {
-                if (ajax.responseText != "signup_success") {
+                if (ajax.responseText.trim() != "signup_success") {
                     _("status").innerHTML = ajax.responseText;
                     _("register-button").style.display = "block";
                 }
                 else {
-                    _("status").innerHTML = "Ok.. please check ur inbox for the link"
+                    _("status").innerHTML = "Ok.. please check ur email inbox for the link"
                 }
             }
         }
