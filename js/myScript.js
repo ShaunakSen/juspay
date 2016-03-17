@@ -26,7 +26,7 @@ function checkEmail() {
     var e = _("email").value;
     if (e != "") {
         _("emailstatus").innerHTML = 'checking ...';
-        var ajax = ajaxObj("POST", "start.php");
+        var ajax = ajaxObj("POST", "index.php");
         ajax.onreadystatechange = function () {
             if (ajaxReturn(ajax) == true) {
                 _("emailstatus").innerHTML = ajax.responseText;
@@ -56,7 +56,7 @@ function signup() {
         // all ok
         _("register-button").style.display = "none";
         _("status").innerHTML = "please wait";
-        var ajax = ajaxObj("POST", "start.php");
+        var ajax = ajaxObj("POST", "index.php");
         ajax.onreadystatechange = function () {
             if (ajaxReturn(ajax) == true) {
                 if (ajax.responseText != "signup_success") {

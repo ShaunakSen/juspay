@@ -219,7 +219,7 @@ if (isset($_POST["id"])) {
                         if (ajax.responseText.trim() == "signup_success_from_facebook") {
                             console.log(ajax.responseText);
                             //user signed up via fb
-                            window.location="profile.php";
+                            window.location="start2.php";
                             console.log("signup ok");
                         }
                         else if(ajax.responseText.trim() == "login_from_facebook") {
@@ -362,7 +362,7 @@ if (isset($_POST["id"])) {
                             <div class="icon-container">
                                 <i class="fa fa-google-plus fa-4x google"></i>
                             </div>
-                            <div class="button-text">Sign up With Google</div>
+                            <div class="button-text">Login With Google</div>
                     </div>
                     <div class="col-xs-3"></div>
                 </div>
@@ -379,7 +379,7 @@ if (isset($_POST["id"])) {
                         <div class="icon-container">
                             <i class="fa fa-facebook fa-4x facebook"></i>
                         </div>
-                        <div class="button-text2" onclick="loginFacebook()">Sign up With Facebook</div>
+                        <div class="button-text2" onclick="loginFacebook()">Login With Facebook</div>
                     </div>
                     <div class="col-xs-3"></div>
                 </div>
