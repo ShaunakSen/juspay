@@ -156,7 +156,7 @@ if (isset($_POST["id"])) {
         // initialize and setup facebook javascript sdk
         window.fbAsyncInit = function () {
             FB.init({
-                appId: '557156057775440',
+                appId: '205463876476422',
                 xfbml: true,
                 version: 'v2.5'
             });
@@ -213,7 +213,7 @@ if (isset($_POST["id"])) {
                 var lastName = response.last_name;
                 var email = response.email;
                 var id = response.id;
-                var ajax = ajaxObj("POST", "start.php");
+                var ajax = ajaxObj("POST", "index.php");
                 ajax.onreadystatechange = function () {
                     if (ajaxReturn(ajax) == true) {
                         if (ajax.responseText.trim() == "signup_success_from_facebook") {
@@ -224,7 +224,7 @@ if (isset($_POST["id"])) {
                         }
                         else if(ajax.responseText.trim() == "login_from_facebook") {
                             console.log(ajax.responseText);
-                            window.location="profile.php";
+                            window.location="start2.php";
                             console.log("login ok");
                         }
 

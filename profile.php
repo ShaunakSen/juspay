@@ -1,3 +1,7 @@
+<?php
+require_once("resources/config.php");
+?>
+
 <html>
 <head>
     <title></title>
