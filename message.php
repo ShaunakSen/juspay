@@ -10,7 +10,7 @@ if($msg=="activation_failure")
 }
 else if($msg=="activation_success"){
     $message='<h2>Activation success</h2><p>Your Account is now active<br>
-                <a href="start.php">Click Here to go back to our homepage to Login</a></p>';
+                <a href="index.php">Click Here to go back to our homepage to Login</a></p>';
 }
 
 else

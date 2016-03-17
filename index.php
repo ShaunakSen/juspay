@@ -52,26 +52,24 @@ if (isset($_POST["e"]) && !(isset($_POST['id']))) {
         $query = query("INSERT INTO users_registered (first_name,last_name,email, password) VALUES('$fn','$ln','$e','$p_hash')");
         confirm($query);
         $uid = get_id();
-        echo '<a href="activation.php?id=' . $uid . '&e=' . $e . '&p=' . $p_hash . '">Click here </a>';
         /*start of mail
+        */
         $to = "$e";
-        $from = "auto_responder@shaunakmysql.webege.com";
-        $subject = 'yoursitename Account Activation';
+        $from = "Meetutu Care";
+        $subject = 'Meetutu Account Activation';
         $message = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>
-                    yoursitename Message</title></head><body style="margin:0px; font-family:Tahoma, Geneva, sans-serif;">
+                    Meetutu System Message</title></head><body style="margin:0px; font-family:Tahoma, Geneva, sans-serif;">
                     <div style="padding:10px; background:#333; font-size:24px; color:#CCC;">
-                    <a href="http://www.yoursitename.com">
-                    <img src="http://www.yoursitename.com/images/logo.png" width="36" height="30" alt="yoursitename"
-                     style="border:none; float:left;"></a>yoursitename Account Activation</div>
-                     <div style="padding:24px; font-size:17px;">Hello ' . $u . ',<br /><br />
-                     Click the link below to activate your account when ready:<br /><br />
-                     <a href="localhost/series/hall2/public/activation.php?id=' . $uid .  '&e=' . $e . '&p=' . $p_hash . '">Click here to activate your account now</a>
-                     <br /><br />Login after successful activation using your:<br />* E-mail Address: <b>' . $e . '</b></div></body></html>';
+                    <a style="color: #c3c0b9; text-decoration: none" href="http://shaunakjuspay.esy.es">
+                    Meetutu Account Information</a></div>
+                    <div style="padding:24px; font-size:17px;">Hello ' . $fn . ' ' .$ln. ',<br /><br />
+                    Click the link below to activate your account when ready:<br /><br />
+                    <a href="http://shaunakjuspay.esy.es/activation?id=' . $uid .  '&e=' . $e . '&p=' . $p_hash . '">Click here to activate your account now</a>
+                    <br /><br />Login after successful activation using your:<br />* E-mail Address: <b>' . $e . '</b></div></body></html>';
         $headers = "From: $from\n";
         $headers .= "MIME-Version: 1.0\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1\n";
         mail($to, $subject, $message, $headers);
-        */
         echo "signup_success";
         exit();
     }
@@ -337,7 +335,11 @@ if (isset($_POST["id"])) {
         <div class="row">
             <div class="col-sm-5"></div>
             <div class="col-sm-2">
-                <div class="signup-button" data-toggle="modal" data-target="#myModal"><a name="about">Sign Up</a></div>
+                <? if(!isset($_SESSION['email']))
+                    echo '<div class="signup-button" data-toggle="modal" data-target="#myModal"><a name="about">Sign Up</a></div>';
+                    else
+                    echo '<a href="start2.php"><div class="signup-button-alternative">Find your Mentors</div></a>';
+                ?>
             </div>
             <div class="col-sm-5"></div>
 
@@ -376,7 +378,7 @@ if (isset($_POST["id"])) {
                 <div class="row" >
                     <div class="col-xs-3"></div>
                     <div class="col-xs-6 button-container">
-                        <div class="icon-container">
+                        <div class="icon-container" onclick="loginFacebook()">
                             <i class="fa fa-facebook fa-4x facebook"></i>
                         </div>
                         <div class="button-text2" onclick="loginFacebook()">Login With Facebook</div>

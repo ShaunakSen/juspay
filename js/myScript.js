@@ -96,7 +96,7 @@ function login() {
                 }
                 else {
 
-                    window.location = "profile.php";
+                    window.location = "index.php";
                     console.log(ajax.responseText);
                 }
 

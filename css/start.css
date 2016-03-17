@@ -408,7 +408,7 @@ a { color: inherit; }
     color: #f7f5fa;
 }
 
-.signup-button
+.signup-button,.signup-button-alternative
 {
     margin-top: 60px;
     height: 70px;
@@ -423,7 +423,7 @@ a { color: inherit; }
     transition: all 0.3s;
 }
 
-.signup-button:hover
+.signup-button:hover, .signup-button-alternative:hover
 {
     background-color: rgba(245, 245, 245, 0);
     color: rgb(118, 44, 46);
@@ -527,6 +527,11 @@ a { color: inherit; }
 .facebook
 {
     color: #3b39bc;
+}
+
+.facebook:hover
+{
+    color: #1719a4;
 }
 
 .button-text2
