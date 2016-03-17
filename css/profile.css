@@ -1,0 +1,54 @@
+html, body { margin: 0; padding: 0; }
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+
+}
+
+a:active {
+    text-decoration: none;
+}
+
+a { color: inherit; }
+
+
+
+@font-face {
+
+    font-family:headerFont2;
+    src: url(../MANIFESTO.ttf);
+}
+
+@font-face {
+    font-family: denseFont;
+    src: url(../Dense-Regular.otf);
+}
+
+@font-face {
+    font-family: baronFont;
+    src:url(../Baron%20Neue.otf);
+}
+
+@font-face {
+    font-family: pierFont;
+    src: url(../pier-bold.otf);
+}
+
+.banner
+{
+    height: 100px;
+    background-color: cornflowerblue;
+    text-align: center;
+    font-family: baronFont,sans-serif;
+    font-size: 18px;
+    line-height: 100px;
+}

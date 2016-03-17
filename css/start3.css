@@ -1,0 +1,347 @@
+html, body { margin: 0; padding: 0; }
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+
+}
+
+a:active {
+    text-decoration: none;
+}
+
+a { color: inherit; }
+
+
+
+@font-face {
+
+    font-family:headerFont2;
+    src: url(../MANIFESTO.ttf);
+}
+
+@font-face {
+    font-family: denseFont;
+    src: url(../Dense-Regular.otf);
+}
+
+@font-face {
+    font-family: baronFont;
+    src:url(../Baron%20Neue.otf);
+}
+
+@font-face {
+    font-family: pierFont;
+    src: url(../pier-bold.otf);
+}
+
+.flex-nav a{
+    color: white;
+    font-weight: 100;
+    letter-spacing: 2px;
+    text-decoration: none;
+    background: rgba(0,0,0,0.65);
+    padding: 20px 5px;
+    display: inline-block;
+    width:100%;
+    text-align: center;
+    transition: all 0.5s;
+}
+
+.flex-nav a:hover
+{
+    background: rgba(0,0,0,0.3);
+}
+
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+
+
+.flex-nav ul
+{
+    border:1px solid black;
+    list-style: none;
+    margin:0;
+    padding: 0;
+    display: flex;
+}
+
+/* These are the flex items  */
+
+.flex-nav li
+{
+    flex: 3;
+}
+
+.flex-nav .social
+{
+    flex: 1;
+}
+
+@media all and (max-width: 1000px) {
+    .flex-nav ul
+    {
+        flex-wrap: wrap;
+    }
+    .flex-nav li
+    {
+        flex:1 1 50%;
+    }
+
+    .flex-nav .social
+    {
+        flex: 1 1 25%;
+    }
+
+}
+
+
+@media all and (max-width: 500px) {
+    .flex-nav li
+    {
+        flex-basis: 100%;
+    }
+
+}
+
+.border-top
+{
+    background-image: linear-gradient(to right, #f19c40 20%, #e2544b 20%, #e2544b 40%, #b455b5 40%, #b455b5 60%, #D3E00C 60%, #D3E00C 80%, #11c966 80%, #11c966 100%);
+    width: 100%;
+    height: 4px;
+}
+
+
+.header-card
+{
+    height: 50px;
+    background-color: #97dc98;
+    margin-bottom: -20px!important;
+    text-align: center;
+    font-family: Ubuntu, sans-serif;
+    line-height: 50px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #505050;
+}
+
+.card{
+    background-color: #e8e9ed !important;
+    border-radius: 8px;
+
+
+}
+
+.card .card-image {
+
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.teacher
+{
+    border-left: 5px solid #c27187;
+}
+
+.subjects
+{
+    font-size: 15px;
+    font-family: Ubuntu, sans-serif;
+}
+
+.individual-subject
+{
+    padding: 5px;
+    margin: 5px;
+    display: inline-block;
+    background-color: #96AFDC;
+    border-radius: 12px;
+    font-size: 13px;
+    color: #3A3A3A;
+}
+.individual-subject-back
+{
+    padding: 5px;
+    margin: 5px;
+    display: inline-block;
+    background-color: #97dc98;
+    border-radius: 12px;
+    font-size: 13px;
+    color: #3A3A3A;
+}
+
+.list-name
+{
+    margin-top: 8px;
+    padding: 3px;
+    background-color: #96E28F;
+    font-size: 15px;
+    font-family: 'Ubuntu', sans-serif;
+    text-indent: 5%;
+
+}
+.list-city
+{
+    margin-top: 8px;
+    padding: 3px;
+    background-color: #9adfdf;
+    font-size: 15px;
+    font-family: 'Ubuntu', sans-serif;
+    text-indent: 5%;
+    cursor: pointer;
+}
+.list-subject {
+    margin-top: 8px;
+    padding: 3px;
+    background-color: #dfa8da;
+    font-size: 15px;
+    font-family: 'Ubuntu', sans-serif;
+    text-indent: 5%;
+    font-weight: 300;
+    cursor: pointer;
+}
+.sum-footer
+{
+    background-color: #435054;
+}
+
+.footer-column2
+{
+    font-family: headerFont2,sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: #d2d2d2;
+}
+
+.footer-column1
+{
+    font-family: headerFont2,sans-serif;
+    color: #d2d2d2;
+    font-size: 18px;
+}
+
+.footer-column3
+{
+    font-family: headerFont2,sans-serif;
+    color: #d2d2d2;
+    font-size: 15px;
+}
+
+
+.sum-mail
+{
+    font-family: pierFont,sans-serif;
+}
+
+.input {
+    margin-top: 5px;
+    width: 300px;
+    height: 30px;
+    background-color: #e7e8ec;
+    box-shadow: none;
+    text-indent: 5%;
+    font-family: "Droid Sans Mono", Helvetica, Arial, sans-serif;
+    color: #737373;
+    border: 3px solid transparent;
+    trainsition:all .3s linear;
+}
+
+.input:focus
+{
+    border: 3px solid #FF5A5F;
+    outline: 3px solid transparent;
+}
+
+.message {
+    margin-top: 5px;
+    background-color: #e7e8ec;
+    box-shadow: none;
+    text-indent: 5%;
+    font-family: "Droid Sans Mono", Helvetica, Arial, sans-serif;
+    color: #737373;
+    border: 3px solid transparent;
+    trainsition:all .3s linear;
+}
+
+.message:focus
+{
+    border: 3px solid #FF5A5F;
+    outline: 3px solid transparent;
+}
+
+.submit2 {
+    margin-top: 5px;
+    width: 170px;
+    height: 50px;
+    border-radius: 25px;
+    line-height: 50px;
+    font-family: "Ubuntu", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #111111;
+    background-color: #FF5A5F;
+    text-align: center;
+    margin-left: 68px;
+    border:1px solid #EFC4C4;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.submit2:hover {
+    background-color: rgba(255, 148, 146, 0);
+    color: #f7f5fa;
+}
+
+.input-field label
+{
+    font-size: 15px!important;
+    font-family: Ubuntu, sans-serif;
+}
+
+#names,#city,#subject,#all
+{
+    font-size: 14px!important;
+    font-family: Ubuntu, sans-serif;
+}
+.message {
+    margin-top: 5px;
+    background-color: #ffffff;
+    box-shadow: none;
+    text-indent: 5% each-line;
+    height: 300px;
+    font-family: "Droid Sans Mono", Helvetica, Arial, sans-serif;
+    color: #406b2e;
+    font-weight: bold;
+    border: 2px solid #86ed71;
+}
+
+
+.message::-webkit-input-placeholder
+{
+    color: #406b2e;
+}
+
+.message:focus
+{
+    border: 4px solid #5ebb48;
+    outline: 4px solid transparent;
+}
+
+.card .card-reveal
+{
+    background-color: #FDCCCC;
+}
