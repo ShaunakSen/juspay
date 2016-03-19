@@ -1,6 +1,12 @@
 <?php
 require_once("resources/config.php");
+function redirect_to($url)
+{
+    header('Location: '.$url);
+}
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -30,7 +36,7 @@ require_once("resources/config.php");
             <li><a href="index.php">Home</a></li>
             <li><a href="#search" class="smoothScroll">Select a Mentor</a></li>
             <li><a href="#dates" class="smoothScroll">Select your dates</a></li>
-            <? if(isset($_SESSION['email']))
+            <? if (isset($_SESSION['email']))
                 echo '<li><a href="logout.php">Log Out</a></li>'
             ?>
             <li class="social">
@@ -51,6 +57,16 @@ require_once("resources/config.php");
 
 <div class="container-fluid">
     <br>
+
+    <div class="row">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-6 welcome-message">
+            <? if(isset($_SESSION['email']))
+                echo "Hi...{$_SESSION['fname']} {$_SESSION['lname']}";
+            ?>
+        </div>
+        <div class="col-xs-3"></div>
+    </div>
 
     <div class="row">
         <div class="col-xs-3"></div>
@@ -79,10 +95,13 @@ require_once("resources/config.php");
                         </p></blockquote>
                 </div>
                 <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i class="material-icons right">close</i></span>
+                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i
+                            class="material-icons right">close</i></span>
 
                     <p>Location: 89 Dum Dum Park Kolkata 700055</p>
+
                     <p><i class="fa fa-phone "></i>&nbsp;8481900767</p>
+
                     <p><i class="fa fa-envelope "></i>&nbsp;shaunak1105@gmail.com</p>
                 </div>
             </div>
@@ -105,10 +124,13 @@ require_once("resources/config.php");
                         </p></blockquote>
                 </div>
                 <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i class="material-icons right">close</i></span>
+                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i
+                            class="material-icons right">close</i></span>
 
                     <p>Location: 89 Dum Dum Park Kolkata 700055</p>
+
                     <p><i class="fa fa-phone "></i>&nbsp;8481900767</p>
+
                     <p><i class="fa fa-envelope "></i>&nbsp;shaunak1105@gmail.com</p>
                 </div>
             </div>
@@ -131,10 +153,13 @@ require_once("resources/config.php");
                         </p></blockquote>
                 </div>
                 <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i class="material-icons right">close</i></span>
+                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i
+                            class="material-icons right">close</i></span>
 
                     <p>Location: 89 Dum Dum Park Kolkata 700055</p>
+
                     <p><i class="fa fa-phone "></i>&nbsp;8481900767</p>
+
                     <p><i class="fa fa-envelope "></i>&nbsp;shaunak1105@gmail.com</p>
                 </div>
             </div>
@@ -157,10 +182,13 @@ require_once("resources/config.php");
                         </p></blockquote>
                 </div>
                 <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i class="material-icons right">close</i></span>
+                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i
+                            class="material-icons right">close</i></span>
 
                     <p>Location: 89 Dum Dum Park Kolkata 700055</p>
+
                     <p><i class="fa fa-phone "></i>&nbsp;8481900767</p>
+
                     <p><i class="fa fa-envelope "></i>&nbsp;shaunak1105@gmail.com</p>
                 </div>
             </div>
@@ -168,7 +196,10 @@ require_once("resources/config.php");
     </div>
 </div>
 
-<a name="search"><div class="border-top"></div></a>
+<a name="search">
+    <div class="border-top"></div>
+</a>
+
 <div class="container-fluid">
     <br>
 
@@ -192,12 +223,14 @@ require_once("resources/config.php");
         <div class="row">
             <div class="col-sm-4">
 
-                <div ng-repeat="x in records | filter:searchNames | filter:all | orderBy:'Name' " class="list-name hoverable">
+                <div ng-repeat="x in records | filter:searchNames | filter:all | orderBy:'Name' "
+                     class="list-name hoverable">
                     {{x.Name}}
                 </div>
             </div>
             <div class="col-sm-4">
-                <div ng-repeat="x in records | filter:searchCountries | filter:all | orderBy:'Name'" class="list-city hoverable">
+                <div ng-repeat="x in records | filter:searchCountries | filter:all | orderBy:'Name'"
+                     class="list-city hoverable">
                     {{x.City}}
                 </div>
             </div>
@@ -223,8 +256,8 @@ require_once("resources/config.php");
             <div class="col-lg-12 info">
                 <br>
                 <a name="dates">
-                This is a simple search app using Angularjs.
-                <br></a>
+                    This is a simple search app using Angularjs.
+                    <br></a>
                 The data is fetched from an external server in JSON format.
                 <br>
                 The data URL: <code>https://api.myjson.com/bins/2w7m7</code>
@@ -321,6 +354,7 @@ require_once("resources/config.php");
     <div class="col-lg-5">
         <div class="form-container">
             <br>
+
             <div class="row">
                 <div class="col-xs-1"></div>
                 <div class="input-field col-xs-4">
@@ -354,9 +388,6 @@ require_once("resources/config.php");
 </div>
 
 
-
-
-
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -365,9 +396,9 @@ require_once("resources/config.php");
     var app = angular.module('myApp', []);
     app.controller('customersCtrl', function ($scope, $http) {
         $http.get("https://api.myjson.com/bins/2w7m7")
-                .success(function (response) {
-                    $scope.records = response.records;
-                });
+            .success(function (response) {
+                $scope.records = response.records;
+            });
     });
 </script>
 
@@ -464,8 +495,7 @@ require_once("resources/config.php");
         var text = "I am free for learning on the following dates: ";
         var text2 = "";
         console.log(dates_selected);
-        for(i=0;i<dates_selected.length;++i)
-        {
+        for (i = 0; i < dates_selected.length; ++i) {
             text2 = text2 + dates_selected[i] + " ";
         }
         console.log(text2)
@@ -473,8 +503,6 @@ require_once("resources/config.php");
         var text_area_text = text + text2;
         $('#textarea-message').val(text_area_text);
     }
-
-
 
 
 </script>

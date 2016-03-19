@@ -21,6 +21,20 @@ function emptyElement(x) {
     _(x).innerHTML = "";
 }
 
+function checkPassword(pass1,pass2)
+{
+    var p1 = _(pass1).value;
+    var p2 = _(pass2).value;
+    if(p1 != p2)
+    {
+        _('status').innerHTML = "Passwords dont match";
+    }
+    else
+    {
+        emptyElement('status')
+    }
+}
+
 
 function checkEmail() {
     var e = _("email").value;

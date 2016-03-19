@@ -205,8 +205,7 @@ a { color: inherit; }
     text-indent: 5%;
     cursor: pointer;
 }
-.list-subject
-{
+.list-subject {
     margin-top: 8px;
     padding: 3px;
     background-color: #dfa8da;
@@ -215,6 +214,7 @@ a { color: inherit; }
     text-indent: 5%;
     font-weight: 300;
     cursor: pointer;
+}
 .sum-footer
 {
     background-color: #435054;
@@ -305,7 +305,7 @@ a { color: inherit; }
     background-color: rgba(255, 148, 146, 0);
     color: #f7f5fa;
 }
-}
+
 .input-field label
 {
     font-size: 15px!important;
@@ -344,4 +344,14 @@ a { color: inherit; }
 .card .card-reveal
 {
     background-color: #FDCCCC;
+}
+
+.welcome-message
+{
+    font-family: headerFont2,sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    color: #4A3DE4;
+    text-align: center;
+
 }

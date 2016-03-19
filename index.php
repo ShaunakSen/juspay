@@ -244,8 +244,8 @@ if (isset($_POST["id"])) {
     <div class="flex-nav">
         <ul>
             <li><a href="#about" class="smoothScroll">What We Do</a></li>
-            <li><a href="start2.html">Learn Something New</a></li>
-            <li><a href="start2.html">Teach Something Cool</a></li>
+            <li><a href="start2.php">Learn Something New</a></li>
+            <li><a href="start2.php">Teach Something Cool</a></li>
             <li><a href="#locate" class="smoothScroll">Locate us</a></li>
             <li><a href="#contact" class="smoothScroll">Get in Touch</a></li>
             <?
@@ -360,25 +360,6 @@ if (isset($_POST["id"])) {
             <div class="modal-body">
                 <div class="row">
                     <div class="col-xs-3"></div>
-                    <div class="col-xs-6 button-container">
-                        <div class="icon-container">
-                            <i class="fa fa-google-plus fa-4x google"></i>
-                        </div>
-                        <div class="button-text">Login With Google</div>
-                    </div>
-                    <div class="col-xs-3"></div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-5">
-                        <hr/>
-                    </div>
-                    <div class="col-xs-2 or">OR</div>
-                    <div class="col-xs-5">
-                        <hr/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-3"></div>
                     <div class="col-xs-6 button-container" id="facebook-button-container">
                         <div class="icon-container" onclick="loginFacebook()">
                             <i class="fa fa-facebook fa-4x facebook"></i>
@@ -407,8 +388,8 @@ if (isset($_POST["id"])) {
                                onkeyup="restrict('email')" onblur="checkEmail()">
 
                         <div id="emailstatus"></div>
-                        <input type="password" class="input-modal" id="pass1" placeholder="ENTER PASSWORD">
-                        <input type="password" class="input-modal" id="pass2" placeholder="CONFIRM PASSWORD">
+                        <input type="password" class="input-modal" id="pass1" placeholder="ENTER PASSWORD" onfocus="emptyElement('status')">
+                        <input type="password" class="input-modal" id="pass2" placeholder="CONFIRM PASSWORD" onblur="checkPassword('pass1','pass2')">
 
                         <div id="status"></div>
                         <div class="register-button" id="register-button" onclick="signup()">Register</div>
