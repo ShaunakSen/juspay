@@ -89,6 +89,8 @@ function redirect_to($url)
                 while ($row = mysqli_fetch_assoc($query)) {
                     $name = $row['first_name'] . ' ' . $row['last_name'];
                     $subjects = $row['teaches'];
+                    $locations = $row['location'];
+                    $individual_locations = explode(";",$locations);
                     $individual_subjects = explode(";",$subjects);
 
                     echo '<div class="col-sm-4">
@@ -109,7 +111,16 @@ function redirect_to($url)
                         }
                     }
 
-                     echo               '</p></blockquote>
+                     echo               '<p class="subjects">Located at:';
+                    for($i=0;$i<count($individual_locations);++$i)
+                    {
+                        if($individual_locations[$i]!=';')
+                        {
+                            echo '<div class="individual-subject-back">'.$individual_locations[$i].'</div>';
+                        }
+                    }
+
+                    echo               '</p></blockquote>
                                 </div>
                                 <div class="card-reveal">
                                     <span class="card-title grey-text text-darken-4">Shaunak Sen<i
