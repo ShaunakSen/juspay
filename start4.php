@@ -1,9 +1,11 @@
 <?php
 require_once("resources/config.php");
+require_once("resources/functions.php");
 function redirect_to($url)
 {
-    header('Location: '.$url);
+    header('Location: ' . $url);
 }
+
 ?>
 
 
@@ -61,7 +63,7 @@ function redirect_to($url)
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-6 welcome-message">
-            <? if(isset($_SESSION['email']))
+            <? if (isset($_SESSION['email']))
                 echo "Hi...{$_SESSION['fname']} {$_SESSION['lname']}";
             ?>
         </div>
@@ -77,122 +79,53 @@ function redirect_to($url)
     </div>
     <hr>
     <div class="row">
-        <div class="col-sm-3">
-            <div class="card hoverable">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="http://placehold.it/350x150">
-                </div>
-                <div class="card-content">
-                    <blockquote class="activator teacher">Shaunak Sen<i class="material-icons right"
-                                                                        style="cursor: pointer">more_vert</i>
+        <?php
+            if (isset($_POST['subject'])) {
+                $subject = $_POST['subject'];
+                $destination = $_POST['destination'];
+                $sql = "SELECT * FROM teachers WHERE teaches LIKE '%{$subject}%' OR location LIKE '%{$destination}%'";
+                $query = query($sql);
+                confirm($query);
+                while ($row = mysqli_fetch_assoc($query)) {
+                    $name = $row['first_name'] . ' ' . $row['last_name'];
+                    $subjects = $row['teaches'];
+                    $individual_subjects = explode(";",$subjects);
 
-                        <p class="subjects">Teaches:
+                    echo '<div class="col-sm-4">
+                            <div class="card hoverable">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" src="http://placehold.it/350x150">
+                                </div>
+                                <div class="card-content">
+                                    <blockquote class="activator teacher">'.$name.'<i class="material-icons right"
+                                                                                        style="cursor: pointer">more_vert</i>
 
-                        <div class="individual-subject">Javascript</div>
-                        <div class="individual-subject">jQuery</div>
-                        <div class="individual-subject">PHP</div>
-                        <div class="individual-subject">AngularJS</div>
-                        </p></blockquote>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i
-                            class="material-icons right">close</i></span>
+                                        <p class="subjects">Teaches:';
+                    for($i=0;$i<count($individual_subjects);++$i)
+                    {
+                        if($individual_subjects[$i]!=';')
+                        {
+                            echo '<div class="individual-subject">'.$individual_subjects[$i].'</div>';
+                        }
+                    }
 
-                    <p>Location: 89 Dum Dum Park Kolkata 700055</p>
+                     echo               '</p></blockquote>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i
+                                            class="material-icons right">close</i></span>
 
-                    <p><i class="fa fa-phone "></i>&nbsp;8481900767</p>
+                                    <p>Location: 89 Dum Dum Park Kolkata 700055</p>
 
-                    <p><i class="fa fa-envelope "></i>&nbsp;shaunak1105@gmail.com</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="card hoverable">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="http://placehold.it/350x150">
-                </div>
-                <div class="card-content">
-                    <blockquote class="activator teacher">Bhagu Dutta<i class="material-icons right"
-                                                                        style="cursor: pointer">more_vert</i>
+                                    <p><i class="fa fa-phone "></i>&nbsp;8481900767</p>
 
-                        <p class="subjects">Teaches:
-
-                        <div class="individual-subject">Javascript</div>
-                        <div class="individual-subject">jQuery</div>
-                        <div class="individual-subject-back">PHP</div>
-                        <div class="individual-subject">AngularJS</div>
-                        </p></blockquote>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i
-                            class="material-icons right">close</i></span>
-
-                    <p>Location: 89 Dum Dum Park Kolkata 700055</p>
-
-                    <p><i class="fa fa-phone "></i>&nbsp;8481900767</p>
-
-                    <p><i class="fa fa-envelope "></i>&nbsp;shaunak1105@gmail.com</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="card hoverable">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="http://placehold.it/350x150">
-                </div>
-                <div class="card-content">
-                    <blockquote class="activator teacher">Paddy Paddy<i class="material-icons right"
-                                                                        style="cursor: pointer">more_vert</i>
-
-                        <p class="subjects">Teaches:
-
-                        <div class="individual-subject">Javascript</div>
-                        <div class="individual-subject">jQuery</div>
-                        <div class="individual-subject-back">PHP</div>
-                        <div class="individual-subject-back">Networking</div>
-                        </p></blockquote>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i
-                            class="material-icons right">close</i></span>
-
-                    <p>Location: 89 Dum Dum Park Kolkata 700055</p>
-
-                    <p><i class="fa fa-phone "></i>&nbsp;8481900767</p>
-
-                    <p><i class="fa fa-envelope "></i>&nbsp;shaunak1105@gmail.com</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="card hoverable">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="http://placehold.it/350x150">
-                </div>
-                <div class="card-content">
-                    <blockquote class="activator teacher">Manisha Sen<i class="material-icons right"
-                                                                        style="cursor: pointer">more_vert</i>
-
-                        <p class="subjects">Teaches:
-
-                        <div class="individual-subject">Javascript</div>
-                        <div class="individual-subject">jQuery</div>
-                        <div class="individual-subject-back">PHP</div>
-                        <div class="individual-subject-back">MySQL</div>
-                        </p></blockquote>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i
-                            class="material-icons right">close</i></span>
-
-                    <p>Location: 89 Dum Dum Park Kolkata 700055</p>
-
-                    <p><i class="fa fa-phone "></i>&nbsp;8481900767</p>
-
-                    <p><i class="fa fa-envelope "></i>&nbsp;shaunak1105@gmail.com</p>
-                </div>
-            </div>
-        </div>
+                                    <p><i class="fa fa-envelope "></i>&nbsp;shaunak1105@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>';
+                }
+            }
+        ?>
     </div>
 </div>
 
@@ -200,6 +133,7 @@ function redirect_to($url)
     <div class="border-top"></div>
 </a>
 <br><br>
+
 <div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-6 header-message">

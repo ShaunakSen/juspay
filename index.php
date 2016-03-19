@@ -152,7 +152,7 @@ if (isset($_POST["id"])) {
         // initialize and setup facebook javascript sdk
         window.fbAsyncInit = function () {
             FB.init({
-                appId: '557156057775440',
+                appId: '205463876476422',
                 xfbml: true,
                 version: 'v2.5'
             });
@@ -310,24 +310,30 @@ if (isset($_POST["id"])) {
         <br>
 
         <div id="loaded-content">
-            <form class="flex-form">
+            <form class="flex-form" action="start4.php" method="post">
 
-                <input type="search" placeholder="Enter subjects to learn" class="search">
+                <select name="subject" id="" class="search" id="subjects">
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Angular.js">Angular.js</option>
+                    <option value="Networking">Networking</option>
+                    <option value="React.js">React.js</option>
+                    <option value="Meteor.js">Meteor.js</option>
+                </select>
                 <label for="" class="from-label">From</label>
                 <input type="date" class="date" name="from">
 
                 <label for="" class="from-label">To</label>
                 <input type="date" name="to" class="date">
 
-                <select name="" id="" class="guest">
-                    <option value="1">Bangalore</option>
-                    <option value="2">Delhi</option>
-                    <option value="3">Kolkata</option>
-                    <option value="4">Mumbai</option>
-                    <option value="5">Pune</option>
+                <select name="destination" class="guest" id="destination">
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Pune">Pune</option>
                 </select>
 
-                <input type="submit" value="Search" class="submit">
+                <input type="submit" value="Search" class="submit" id="submit-query">
 
             </form>
 

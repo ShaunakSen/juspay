@@ -355,3 +355,12 @@ a { color: inherit; }
     text-align: center;
 
 }
+
+.header-message
+{
+    font-family: "Ubuntu",sans-serif;
+    font-size: 22px;
+    color: #7a7be4;
+    text-align: center;
+
+}
