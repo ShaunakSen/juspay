@@ -185,6 +185,7 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
 <div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-6 header-message">
+        Cant find your perfect mentor yet? <hr>
         Browse our full repository of Teachers
     </div>
     <div class="col-sm-3"></div>
@@ -366,12 +367,12 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
                 <div class="row">
                     <div class="col-xs-1"></div>
                     <div class="input-field col-xs-4">
-                        <input id="first_name" type="text" class="validate" value="<? echo $_SESSION['fname'] ?>">
+                        <input id="first_name" type="text" class="validate" value="<? if(isset($_SESSION['email'])) echo $_SESSION['fname'] ?>">
                         <label for="first_name">First Name</label>
                     </div>
                     <div class="col-xs-2"></div>
                     <div class="input-field col s4">
-                        <input id="last_name" type="text" class="validate" value="<? echo $_SESSION['lname'] ?>">
+                        <input id="last_name" type="text" class="validate" value="<? if(isset($_SESSION['email'])) echo $_SESSION['lname'] ?>">
                         <label for="last_name">Last Name</label>
                     </div>
                     <div class="col-xs-1"></div>
