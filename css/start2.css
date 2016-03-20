@@ -364,3 +364,18 @@ a { color: inherit; }
     text-align: center;
 
 }
+
+.select-teacher
+{
+    float: right;
+    color: cornflowerblue;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    margin-top: -30px;
+}
+
+.select-teacher:hover
+{
+    float: right;
+    color: #3d33ed;
+}

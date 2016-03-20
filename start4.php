@@ -90,11 +90,12 @@ function redirect_to($url)
                     $name = $row['first_name'] . ' ' . $row['last_name'];
                     $subjects = $row['teaches'];
                     $locations = $row['location'];
+                    $email = $row['email'];
                     $individual_locations = explode(";",$locations);
                     $individual_subjects = explode(";",$subjects);
 
                     echo '<div class="col-sm-4">
-                            <div class="card hoverable">
+                            <div class="card hoverable" data-email='.$email.'>
                                 <div class="card-image waves-effect waves-block waves-light">
                                     <img class="activator" src="http://placehold.it/350x150">
                                 </div>
@@ -120,7 +121,7 @@ function redirect_to($url)
                         }
                     }
 
-                    echo               '</p></blockquote>
+                    echo               '</p></blockquote><div class="select-teacher" data-email="'.$email.'"><i class="fa fa-plus-circle fa-2x"></i></div>
                                 </div>
                                 <div class="card-reveal">
                                     <span class="card-title grey-text text-darken-4">Shaunak Sen<i
@@ -130,7 +131,7 @@ function redirect_to($url)
 
                                     <p><i class="fa fa-phone "></i>&nbsp;8481900767</p>
 
-                                    <p><i class="fa fa-envelope "></i>&nbsp;shaunak1105@gmail.com</p>
+                                    <p><i class="fa fa-envelope "></i>&nbsp;'.$email.'</p>
                                 </div>
                             </div>
                         </div>';
@@ -158,38 +159,47 @@ function redirect_to($url)
 
     <div ng-app="myApp" ng-controller="customersCtrl">
         <div class="row">
-            <div class="input-field col s4">
+            <div class="input-field col s3">
                 <input id="names" type="text" class="validate" ng-model="searchNames">
                 <label for="names">Name</label>
             </div>
-            <div class="input-field col s4">
+            <div class="input-field col s3">
                 <input id="city" type="text" class="validate" ng-model="searchCountries">
                 <label for="city">City</label>
             </div>
-            <div class="input-field col s4">
+            <div class="input-field col s3">
                 <input id="subject" type="text" class="validate" ng-model="searchSubjects">
                 <label for="subject">Subject</label>
+            </div>
+            <div class="input-field col s3">
+                <input id="subject" type="text" class="validate" ng-model="searchEmails">
+                <label for="subject">Email</label>
             </div>
         </div>
         <br/>
 
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
 
                 <div ng-repeat="x in records | filter:searchNames | filter:all | orderBy:'Name' "
                      class="list-name hoverable">
                     {{x.Name}}
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div ng-repeat="x in records | filter:searchCountries | filter:all | orderBy:'Name'"
                      class="list-city hoverable">
                     {{x.City}}
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div ng-repeat="x in records | filter:searchSubjects | filter:all | orderBy:'Name'"
                      class="list-subject hoverable">{{x.Subject}}
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div ng-repeat="x in records | filter:searchEmails | filter:all | orderBy:'Name'"
+                     class="list-subject hoverable">{{x.Email}}
                 </div>
             </div>
         </div>
@@ -229,7 +239,7 @@ function redirect_to($url)
 </div>
 <hr>
 <!--start of grid -->
-<div class="row">
+<div class="row" id="myGrid">
     <div class="col-lg-7">
         <div class="all">
             <div class="monday hoverable z-depth-1">
@@ -311,12 +321,12 @@ function redirect_to($url)
             <div class="row">
                 <div class="col-xs-1"></div>
                 <div class="input-field col-xs-4">
-                    <input id="first_name" type="text" class="validate">
+                    <input id="first_name" type="text" class="validate" value="<? echo $_SESSION['fname'] ?>">
                     <label for="first_name">First Name</label>
                 </div>
                 <div class="col-xs-2"></div>
                 <div class="input-field col s4">
-                    <input id="last_name" type="text" class="validate">
+                    <input id="last_name" type="text" class="validate" value="<? echo $_SESSION['lname'] ?>">
                     <label for="last_name">Last Name</label>
                 </div>
                 <div class="col-xs-1"></div>
@@ -348,7 +358,7 @@ function redirect_to($url)
 <script>
     var app = angular.module('myApp', []);
     app.controller('customersCtrl', function ($scope, $http) {
-        $http.get("https://api.myjson.com/bins/2w7m7")
+        $http.get("https://api.myjson.com/bins/3ay8z")
             .success(function (response) {
                 $scope.records = response.records;
             });
@@ -456,6 +466,17 @@ function redirect_to($url)
         var text_area_text = text + text2;
         $('#textarea-message').val(text_area_text);
     }
+
+    $('.select-teacher').on('click',function(e){
+        e.preventDefault();
+        var email = $(this).attr('data-email');
+        console.log(email);
+        $('html, body').animate({
+            scrollTop: $("#myGrid").offset().top
+        }, 300);
+        $('#email').focus();
+        $('#email').val(email);
+    });
 
 
 </script>
