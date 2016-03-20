@@ -1,18 +1,18 @@
-<form class="flex-form">
+<form class="flex-form" action="start5.php" method="post">
 
-    <input type="search" placeholder="Enter subjects to teach" class="search">
-    <label for="from" class="from-label">From</label>
+    <input type="search" placeholder="Enter subjects to teach" class="search" name="subject">
+    <label for="" class="from-label">From</label>
     <input type="date" class="date" name="from">
 
-    <label for="from" class="from-label">To</label>
+    <label for="" class="from-label">To</label>
     <input type="date" name="to" class="date">
 
-    <select name="" id="" class="guest">
-        <option value="1">Bangalore</option>
-        <option value="2">Delhi</option>
-        <option value="3">Kolkata</option>
-        <option value="4">Mumbai</option>
-        <option value="5">Pune</option>
+    <select name="destination" class="guest" id="destination">
+        <option value="Bangalore">Bangalore</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Kolkata">Kolkata</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Pune">Pune</option>
     </select>
 
     <input type="submit" value="Search" class="submit" style="background-color: #EF6491">

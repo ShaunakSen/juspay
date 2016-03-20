@@ -594,6 +594,11 @@ if (isset($_POST["id"])) {
         document.getElementById('new-button').addEventListener('click', login);
     })
 
+    $.ajaxSetup ({
+        // Disable caching of AJAX responses */
+        cache: false
+    });
+
 </script>
 </body>
 </html>
