@@ -371,11 +371,16 @@ a { color: inherit; }
     color: cornflowerblue;
     transition: all 0.3s linear;
     cursor: pointer;
-    margin-top: -30px;
+    margin-top: -50px;
 }
 
 .select-teacher:hover
 {
     float: right;
     color: #3d33ed;
+}
+.done-button
+{
+    width: 50px!important;
+    height: 50px!important;
 }

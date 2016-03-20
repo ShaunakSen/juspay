@@ -121,7 +121,8 @@ function redirect_to($url)
                         }
                     }
 
-                    echo               '</p></blockquote><div class="select-teacher" data-email="'.$email.'"><i class="fa fa-plus-circle fa-2x"></i></div>
+                    echo               '</p></blockquote><div class="select-teacher" data-email="'.$email.'">  <a class="btn-floating btn-large waves-effect waves-light done-button"><i class="material-icons">done</i></a>
+</div>
                                 </div>
                                 <div class="card-reveal">
                                     <span class="card-title grey-text text-darken-4">Shaunak Sen<i
@@ -223,7 +224,7 @@ function redirect_to($url)
                     <br></a>
                 The data is fetched from an external server in JSON format.
                 <br>
-                The data URL: <code>https://api.myjson.com/bins/2w7m7</code>
+                The data URL: <code>https://api.myjson.com/bins/3ay8z</code>
                 <br><br>
             </div>
         </div>
@@ -465,6 +466,7 @@ function redirect_to($url)
 
         var text_area_text = text + text2;
         $('#textarea-message').val(text_area_text);
+
     }
 
     $('.select-teacher').on('click',function(e){
