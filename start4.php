@@ -6,6 +6,43 @@ function redirect_to($url)
     header('Location: ' . $url);
 }
 
+if (isset($_POST["e"]) && (isset($_POST['fn']))) {
+    // CONNECT TO THE DATABASE
+    $e = escape_string($_POST['e']);
+    $fn = $_POST['fn'];
+    $ln = $_POST['ln'];
+    $fn = escape_string($fn);
+    $ln = escape_string($ln);
+    $text = escape_string($_POST['text']);
+    if ($e == "" || $fn == "" || $ln == "" || $text == "") {
+        echo "The form submission is missing values.";
+        exit();
+    } else {
+        //start of mail
+        /*
+        $to = "$e";
+        $from = "Meetutu Care";
+        $subject = 'Meetutu Account Activation';
+        $message = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>
+                    Meetutu System Message</title></head><body style="margin:0px; font-family:Tahoma, Geneva, sans-serif;">
+                    <div style="padding:10px; background:#333; font-size:24px; color:#CCC;">
+                    <a style="color: #c3c0b9; text-decoration: none" href="http://shaunakjuspay.esy.es">
+                    Meetutu Account Information</a></div>
+                    <div style="padding:24px; font-size:17px;">Hello ' . $fn . ' ' . $ln . ',<br /><br />
+                    Click the link below to activate your account when ready:<br /><br />
+                    <a href="http://shaunakjuspay.esy.es/activation.php?id=' . $uid . '&e=' . $e . '&p=' . $p_hash . '">Click here to activate your account now</a>
+                    <br /><br />Login after successful activation using your:<br />* E-mail Address: <b>' . $e . '</b></div></body></html>';
+        $headers = "From: $from\n";
+        $headers .= "MIME-Version: 1.0\n";
+        $headers .= "Content-type: text/html; charset=iso-8859-1\n";
+        mail($to, $subject, $message, $headers);
+        */
+        echo "send_success";
+        exit();
+    }
+    exit();
+}
+
 ?>
 
 
@@ -23,6 +60,8 @@ function redirect_to($url)
     <link rel="stylesheet" href="css/start2.css">
     <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet" href="css/preloader.css">
+    <script src="js/main.js"></script>
+    <script src="js/ajax.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body class="demo loading">
@@ -80,48 +119,44 @@ function redirect_to($url)
     <hr>
     <div class="row">
         <?php
-            if (isset($_POST['subject'])) {
-                $subject = $_POST['subject'];
-                $destination = $_POST['destination'];
-                $sql = "SELECT * FROM teachers WHERE teaches LIKE '%{$subject}%' OR location LIKE '%{$destination}%'";
-                $query = query($sql);
-                confirm($query);
-                while ($row = mysqli_fetch_assoc($query)) {
-                    $name = $row['first_name'] . ' ' . $row['last_name'];
-                    $subjects = $row['teaches'];
-                    $locations = $row['location'];
-                    $email = $row['email'];
-                    $individual_locations = explode(";",$locations);
-                    $individual_subjects = explode(";",$subjects);
+        if (isset($_POST['subject'])) {
+            $subject = $_POST['subject'];
+            $destination = $_POST['destination'];
+            $sql = "SELECT * FROM teachers WHERE teaches LIKE '%{$subject}%' OR location LIKE '%{$destination}%'";
+            $query = query($sql);
+            confirm($query);
+            while ($row = mysqli_fetch_assoc($query)) {
+                $name = $row['first_name'] . ' ' . $row['last_name'];
+                $subjects = $row['teaches'];
+                $locations = $row['location'];
+                $email = $row['email'];
+                $individual_locations = explode(";", $locations);
+                $individual_subjects = explode(";", $subjects);
 
-                    echo '<div class="col-sm-4">
-                            <div class="card hoverable" data-email='.$email.'>
+                echo '<div class="col-sm-4">
+                            <div class="card hoverable" data-email=' . $email . '>
                                 <div class="card-image waves-effect waves-block waves-light">
                                     <img class="activator" src="http://placehold.it/350x150">
                                 </div>
                                 <div class="card-content">
-                                    <blockquote class="activator teacher">'.$name.'<i class="material-icons right"
+                                    <blockquote class="activator teacher">' . $name . '<i class="material-icons right"
                                                                                         style="cursor: pointer">more_vert</i>
 
                                         <p class="subjects">Teaches:';
-                    for($i=0;$i<count($individual_subjects);++$i)
-                    {
-                        if($individual_subjects[$i]!=';')
-                        {
-                            echo '<div class="individual-subject">'.$individual_subjects[$i].'</div>';
-                        }
+                for ($i = 0; $i < count($individual_subjects); ++$i) {
+                    if ($individual_subjects[$i] != ';') {
+                        echo '<div class="individual-subject">' . $individual_subjects[$i] . '</div>';
                     }
+                }
 
-                     echo               '<p class="subjects">Located at:';
-                    for($i=0;$i<count($individual_locations);++$i)
-                    {
-                        if($individual_locations[$i]!=';')
-                        {
-                            echo '<div class="individual-subject-back">'.$individual_locations[$i].'</div>';
-                        }
+                echo '<p class="subjects">Located at:';
+                for ($i = 0; $i < count($individual_locations); ++$i) {
+                    if ($individual_locations[$i] != ';') {
+                        echo '<div class="individual-subject-back">' . $individual_locations[$i] . '</div>';
                     }
+                }
 
-                    echo               '</p></blockquote><div class="select-teacher" data-email="'.$email.'">  <a class="btn-floating btn-large waves-effect waves-light done-button"><i class="material-icons">done</i></a>
+                echo '</p></blockquote><div class="select-teacher" data-email="' . $email . '">  <a class="btn-floating btn-large waves-effect waves-light done-button"><i class="material-icons">done</i></a>
 </div>
                                 </div>
                                 <div class="card-reveal">
@@ -132,12 +167,12 @@ function redirect_to($url)
 
                                     <p><i class="fa fa-phone "></i>&nbsp;8481900767</p>
 
-                                    <p><i class="fa fa-envelope "></i>&nbsp;'.$email.'</p>
+                                    <p><i class="fa fa-envelope "></i>&nbsp;' . $email . '</p>
                                 </div>
                             </div>
                         </div>';
-                }
             }
+        }
         ?>
     </div>
 </div>
@@ -234,11 +269,19 @@ function redirect_to($url)
 <div class="row">
     <div class="col-xs-3"></div>
 
-    <div class="col-xs-6 header-card">Select the days which you can commit to learning</div>
+    <div class="col-xs-6 header-card" id="scrollHere">Select the days which you can commit to learning</div>
     <div class="col-xs-3"></div>
 
 </div>
 <hr>
+
+<div class="row">
+    <div class="col-xs-3"></div>
+
+    <div class="col-xs-6 header-message">Select a minimum span of 10 days from the calendar below</div>
+    <div class="col-xs-3"></div>
+
+</div>
 <!--start of grid -->
 <div class="row" id="myGrid">
     <div class="col-lg-7">
@@ -319,34 +362,47 @@ function redirect_to($url)
         <div class="form-container">
             <br>
 
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="input-field col-xs-4">
-                    <input id="first_name" type="text" class="validate" value="<? echo $_SESSION['fname'] ?>">
-                    <label for="first_name">First Name</label>
+            <form onsubmit="return false">
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="input-field col-xs-4">
+                        <input id="first_name" type="text" class="validate" value="<? echo $_SESSION['fname'] ?>">
+                        <label for="first_name">First Name</label>
+                    </div>
+                    <div class="col-xs-2"></div>
+                    <div class="input-field col s4">
+                        <input id="last_name" type="text" class="validate" value="<? echo $_SESSION['lname'] ?>">
+                        <label for="last_name">Last Name</label>
+                    </div>
+                    <div class="col-xs-1"></div>
                 </div>
-                <div class="col-xs-2"></div>
-                <div class="input-field col s4">
-                    <input id="last_name" type="text" class="validate" value="<? echo $_SESSION['lname'] ?>">
-                    <label for="last_name">Last Name</label>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="input-field col-xs-9">
+                        <input id="email" type="email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="col-xs-2"></div>
                 </div>
-                <div class="col-xs-1"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="input-field col-xs-9">
-                    <input id="email" type="email" class="validate">
-                    <label for="email">Email</label>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-9">
+                        <textarea class="message" id="textarea-message" placeholder="ENTER YOUR MESSAGE"></textarea>
+                    </div>
+                    <div class="col-xs-2"></div>
                 </div>
-                <div class="col-xs-2"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-9">
-                    <textarea class="message" id="textarea-message" placeholder="ENTER YOUR MESSAGE"></textarea>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-4">
+                        <button class="btn waves-effect waves-light" type="submit" name="action" id="send-button"
+                                onclick="sendMail()">
+                            Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                    <div class="col-xs-7" id="status"></div>
                 </div>
-                <div class="col-xs-2"></div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -448,9 +504,10 @@ function redirect_to($url)
      }
 
      */
-
+    var dates_selected = [];
     function get_the_days() {
-        var dates_selected = [];
+        dates_selected = [];
+
         var selectedClasses = document.getElementsByClassName('selected');
         for (var i = 0; i < selectedClasses.length; ++i) {
             var date = selectedClasses[i].firstChild.innerHTML;
@@ -466,19 +523,52 @@ function redirect_to($url)
 
         var text_area_text = text + text2;
         $('#textarea-message').val(text_area_text);
+        console.log(dates_selected)
 
     }
 
-    $('.select-teacher').on('click',function(e){
+    $('.select-teacher').on('click', function (e) {
         e.preventDefault();
         var email = $(this).attr('data-email');
         console.log(email);
         $('html, body').animate({
-            scrollTop: $("#myGrid").offset().top
+            scrollTop: $("#scrollHere").offset().top
         }, 300);
         $('#email').focus();
         $('#email').val(email);
     });
+
+    function sendMail() {
+        var no_of_days_selected = dates_selected.length;
+        var fn = _('first_name').value;
+        var ln = _('last_name').value;
+        var e = _("email").value;
+        var text = _('textarea-message').value;
+        if (no_of_days_selected < 10) {
+            alert("please select a span of at least 10 days");
+            _("status").innerHTML = "please select a span of at least 10 days";
+        }
+        else if (e == "" || fn == "" || ln == "" || text == "") {
+            _("status").innerHTML = "Please fill out all of the form data";
+        }
+        else {
+            _("send-button").style.display = "none";
+            _("status").innerHTML = "please wait";
+            var ajax = ajaxObj("POST", "start4.php");
+            ajax.onreadystatechange = function () {
+                if (ajaxReturn(ajax) == true) {
+                    if (ajax.responseText.trim() != "send_success") {
+                        _("status").innerHTML = ajax.responseText;
+                        _("send-button").style.display = "block";
+                    }
+                    else {
+                        _("status").innerHTML = "Ok.. mail sent.. We will get back to you shortly"
+                    }
+                }
+            }
+            ajax.send("fn=" + fn + "&ln=" + ln + "&e=" + e + "&text=" + text);
+        }
+    }
 
 
 </script>
