@@ -245,7 +245,7 @@ if (isset($_POST["id"])) {
         <ul>
             <li><a href="#about" class="smoothScroll">What We Do</a></li>
             <li><a href="start2.php">Learn Something New</a></li>
-            <li><a href="start2.php">Teach Something Cool</a></li>
+            <li><a href="start6.php">Teach Something Cool</a></li>
             <li><a href="#locate" class="smoothScroll">Locate us</a></li>
             <li><a href="#contact" class="smoothScroll">Get in Touch</a></li>
             <?

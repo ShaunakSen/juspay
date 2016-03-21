@@ -110,7 +110,7 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
     <div class="row">
         <div class="col-xs-3"></div>
 
-        <div class="col-xs-6 header-card">Showing teachers with similar preferences</div>
+        <div class="col-xs-6 header-card">Showing our popular teachers</div>
         <div class="col-xs-3"></div>
 
     </div>
@@ -119,7 +119,7 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
         <div class="col-xs-3"></div>
 
         <div class="col-xs-6 header-message">Select a teacher below and send him an email
-        <hr>
+            <hr>
             We will contact you soon after that<br>
         </div>
         <div class="col-xs-3"></div>
@@ -127,21 +127,20 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
     </div>
     <div class="row">
         <?php
-        if (isset($_POST['subject'])) {
-            $subject = strtolower($_POST['subject']);
-            $destination = $_POST['destination'];
-            $sql = "SELECT * FROM teachers WHERE LOWER(teaches) LIKE '%{$subject}%' OR location LIKE '%{$destination}%'";
-            $query = query($sql);
-            confirm($query);
-            while ($row = mysqli_fetch_assoc($query)) {
-                $name = $row['first_name'] . ' ' . $row['last_name'];
-                $subjects = $row['teaches'];
-                $locations = $row['location'];
-                $email = $row['email'];
-                $individual_locations = explode(";", $locations);
-                $individual_subjects = explode(";", $subjects);
 
-                echo '<div class="col-sm-4">
+
+        $sql = "SELECT * FROM teachers LIMIT 10";
+        $query = query($sql);
+        confirm($query);
+        while ($row = mysqli_fetch_assoc($query)) {
+            $name = $row['first_name'] . ' ' . $row['last_name'];
+            $subjects = $row['teaches'];
+            $locations = $row['location'];
+            $email = $row['email'];
+            $individual_locations = explode(";", $locations);
+            $individual_subjects = explode(";", $subjects);
+
+            echo '<div class="col-sm-4">
                             <div class="card hoverable" data-email=' . $email . '>
                                 <div class="card-image waves-effect waves-block waves-light">
                                     <img class="activator" src="http://placehold.it/350x150">
@@ -151,20 +150,20 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
                                                                                         style="cursor: pointer">more_vert</i>
 
                                         <p class="subjects">Teaches:';
-                for ($i = 0; $i < count($individual_subjects); ++$i) {
-                    if ($individual_subjects[$i] != ';') {
-                        echo '<div class="individual-subject">' . $individual_subjects[$i] . '</div>';
-                    }
+            for ($i = 0; $i < count($individual_subjects); ++$i) {
+                if ($individual_subjects[$i] != ';') {
+                    echo '<div class="individual-subject">' . $individual_subjects[$i] . '</div>';
                 }
+            }
 
-                echo '<p class="subjects">Located at:';
-                for ($i = 0; $i < count($individual_locations); ++$i) {
-                    if ($individual_locations[$i] != ';') {
-                        echo '<div class="individual-subject-back">' . $individual_locations[$i] . '</div>';
-                    }
+            echo '<p class="subjects">Located at:';
+            for ($i = 0; $i < count($individual_locations); ++$i) {
+                if ($individual_locations[$i] != ';') {
+                    echo '<div class="individual-subject-back">' . $individual_locations[$i] . '</div>';
                 }
+            }
 
-                echo '</p></blockquote><div class="select-teacher" data-email="' . $email . '">  <a class="btn-floating btn-large waves-effect waves-light done-button"><i class="material-icons">done</i></a>
+            echo '</p></blockquote><div class="select-teacher" data-email="' . $email . '">  <a class="btn-floating btn-large waves-effect waves-light done-button"><i class="material-icons">done</i></a>
 </div>
                                 </div>
                                 <div class="card-reveal">
@@ -179,8 +178,8 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
                                 </div>
                             </div>
                         </div>';
-            }
         }
+
         ?>
     </div>
 </div>
@@ -189,6 +188,7 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
     <div class="border-top"></div>
 </a>
 <br><br>
+
 <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-10">
@@ -199,12 +199,14 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
                 <div class="row" id="scrollHere">
                     <div class="col-xs-1"></div>
                     <div class="input-field col-xs-4">
-                        <input id="first_name" type="text" class="validate" value="<? if(isset($_SESSION['email'])) echo $_SESSION['fname'] ?>">
+                        <input id="first_name" type="text" class="validate"
+                               value="<? if (isset($_SESSION['email'])) echo $_SESSION['fname'] ?>">
                         <label for="first_name">First Name</label>
                     </div>
                     <div class="col-xs-2"></div>
                     <div class="input-field col s4">
-                        <input id="last_name" type="text" class="validate" value="<? if(isset($_SESSION['email'])) echo $_SESSION['lname'] ?>">
+                        <input id="last_name" type="text" class="validate"
+                               value="<? if (isset($_SESSION['email'])) echo $_SESSION['lname'] ?>">
                         <label for="last_name">Last Name</label>
                     </div>
                     <div class="col-xs-1"></div>
@@ -242,7 +244,6 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
 </div>
 
 
-
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -276,7 +277,7 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
         else {
             _("send-button").style.display = "none";
             _("status").innerHTML = "please wait";
-            var ajax = ajaxObj("POST", "start5.php");
+            var ajax = ajaxObj("POST", "start6.php");
             ajax.onreadystatechange = function () {
                 if (ajaxReturn(ajax) == true) {
                     if (ajax.responseText.trim() != "send_success") {
