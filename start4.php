@@ -118,6 +118,27 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
     </div>
     <hr>
     <div class="row">
+        <div class="col-xs-3"></div>
+
+        <div class="col-xs-6 header-message">Select a teacher below
+            <br>
+        </div>
+        <div class="col-xs-3"></div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 search-header"><?
+            if(isset($_POST['subject']))
+            {
+                echo 'Displaying results for teachers teaching: <span class="individual-subject">'.$_POST['subject'].'</span> or teachers located at <span class="individual-subject-back">'.$_POST['destination'].'</span>';
+            }
+            ?>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+    <div class="row">
         <?php
         if (isset($_POST['subject'])) {
             $subject = $_POST['subject'];
@@ -160,7 +181,7 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
 </div>
                                 </div>
                                 <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i
+                                    <span class="card-title grey-text text-darken-4">'.$name.'<i
                                             class="material-icons right">close</i></span>
 
                                     <p>Location: 89 Dum Dum Park Kolkata 700055</p>
@@ -534,7 +555,7 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
         console.log(email);
         $('html, body').animate({
             scrollTop: $("#scrollHere").offset().top
-        }, 300);
+        }, 600);
         $('#email').focus();
         $('#email').val(email);
     });

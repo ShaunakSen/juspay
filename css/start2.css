@@ -133,7 +133,7 @@ a { color: inherit; }
     background-color: #97dc98;
     margin-bottom: -20px!important;
     text-align: center;
-    font-family: Ubuntu, sans-serif;
+    font-family: "Ubuntu", sans-serif;
     line-height: 50px;
     font-weight: bold;
     font-size: 16px;
@@ -161,7 +161,7 @@ a { color: inherit; }
 .subjects
 {
     font-size: 15px;
-    font-family: Ubuntu, sans-serif;
+    font-family: "Ubuntu", sans-serif;
 }
 
 .individual-subject
@@ -309,13 +309,13 @@ a { color: inherit; }
 .input-field label
 {
     font-size: 15px!important;
-    font-family: Ubuntu, sans-serif;
+    font-family: "Ubuntu", sans-serif;
 }
 
 #names,#city,#subject,#all
 {
     font-size: 14px!important;
-    font-family: Ubuntu, sans-serif;
+    font-family: "Ubuntu", sans-serif;
 }
 .message {
     margin-top: 5px;
@@ -359,7 +359,7 @@ a { color: inherit; }
 .header-message
 {
     font-family: "Ubuntu",sans-serif;
-    font-size: 22px;
+    font-size: 20px;
     color: #7a7be4;
     text-align: center;
 
@@ -383,4 +383,24 @@ a { color: inherit; }
 {
     width: 50px!important;
     height: 50px!important;
+}
+
+.btn-floating
+{
+    background-color: #72ea5b;
+}
+
+.btn-floating i
+{
+    color: #12430d;
+}
+
+.btn-floating:hover
+{
+    background-color: #43bc29;
+}
+
+.search-header{
+    font-family: "Ubuntu",sans-serif;
+    font-size: 15px;
 }

@@ -158,7 +158,7 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
 </div>
                                 </div>
                                 <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Shaunak Sen<i
+                                    <span class="card-title grey-text text-darken-4">'.$name.'<i
                                             class="material-icons right">close</i></span>
 
                                     <p>Location: 89 Dum Dum Park Kolkata 700055</p>
@@ -532,7 +532,7 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
         console.log(email);
         $('html, body').animate({
             scrollTop: $("#scrollHere").offset().top
-        }, 300);
+        }, 600);
         $('#email').focus();
         $('#email').val(email);
     });
