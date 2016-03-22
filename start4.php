@@ -213,28 +213,17 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
 </div>
 
 <div class="container-fluid">
-    <br>
-
     <div ng-app="myApp" ng-controller="customersCtrl">
-        <div class="row">
-            <div class="input-field col s3">
-                <input id="names" type="text" class="validate" ng-model="searchNames">
-                <label for="names">Name</label>
-            </div>
-            <div class="input-field col s3">
-                <input id="city" type="text" class="validate" ng-model="searchCountries">
-                <label for="city">City</label>
-            </div>
-            <div class="input-field col s3">
-                <input id="subject" type="text" class="validate" ng-model="searchSubjects">
-                <label for="subject">Subject</label>
-            </div>
-            <div class="input-field col s3">
-                <input id="subject" type="text" class="validate" ng-model="searchEmails">
-                <label for="subject">Email</label>
-            </div>
-        </div>
+
         <br/>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="input-field col s4">
+                <input id="all" type="text" class="validate" ng-model="all">
+                <label for="all">Search All</label>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
 
         <div class="row">
             <div class="col-sm-3">
@@ -264,14 +253,25 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
         <br>
 
         <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="input-field col s4">
-                <input id="all" type="text" class="validate" ng-model="all">
-                <label for="all">Search All</label>
+            <div class="input-field col s3">
+                <input id="names" type="text" class="validate" ng-model="searchNames">
+                <label for="names">Search by Name</label>
             </div>
-            <div class="col-sm-4"></div>
+            <div class="input-field col s3">
+                <input id="city" type="text" class="validate" ng-model="searchCountries">
+                <label for="city">Search by City</label>
+            </div>
+            <div class="input-field col s3">
+                <input id="subject" type="text" class="validate" ng-model="searchSubjects">
+                <label for="subject">Search by Subject</label>
+            </div>
+            <div class="input-field col s3">
+                <input id="subject" type="text" class="validate" ng-model="searchEmails">
+                <label for="subject">Search by Email</label>
+            </div>
         </div>
-        <br>
+
+
 
         <div class="row">
             <div class="col-lg-12 info">
@@ -285,6 +285,8 @@ if (isset($_POST["e"]) && (isset($_POST['fn']))) {
                 <br><br>
             </div>
         </div>
+
+
 
     </div>
 </div>

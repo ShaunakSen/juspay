@@ -55,10 +55,10 @@ if (isset($_POST["e"]) && !(isset($_POST['id']))) {
         /*start of mail
         */
         $to = "$e";
-        $from = "Meetutu Care";
+        $from = "meetutu@shaunakjuspay.esy.es";
         $subject = 'Meetutu Account Activation';
         $message = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>
-                    Meetutu System Message</title></head><body style="margin:0px; font-family:Tahoma, Geneva, sans-serif;">
+                    Meetutu System Message</title></head><body style="margin:0; font-family:Tahoma, Geneva, sans-serif;">
                     <div style="padding:10px; background:#333; font-size:24px; color:#CCC;">
                     <a style="color: #c3c0b9; text-decoration: none" href="http://shaunakjuspay.esy.es">
                     Meetutu Account Information</a></div>
@@ -70,7 +70,7 @@ if (isset($_POST["e"]) && !(isset($_POST['id']))) {
         $headers .= "MIME-Version: 1.0\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1\n";
         mail($to, $subject, $message, $headers);
-        echo "signup_success";
+            echo "signup_success";
         exit();
     }
     exit();
@@ -119,7 +119,7 @@ if (isset($_POST["id"])) {
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>Meetutu Home</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
